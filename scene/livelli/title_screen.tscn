@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dynsq4gk80ch1"]
+[gd_scene load_steps=2 format=3 uid="uid://ccy1odn7aemx1"]
 
 [ext_resource type="Script" uid="uid://c1mw5t8rnv183" path="res://script/gestisci_bottoni.gd" id="1_0b24m"]
-
-[sub_resource type="GDScript" id="GDScript_608ii"]
-script/source = "extends Control"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,13 +11,66 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0b24m")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
-offset_left = 560.0
-offset_top = 288.0
-offset_right = 601.0
-offset_bottom = 319.0
-text = "Play"
-script = SubResource("GDScript_608ii")
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -33.0
+offset_right = 31.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[node name="play" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Play"
+
+[node name="setting" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Setting
+"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 31.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="back_to_title_screen" type="Button" parent="Settings/MarginContainer"]
+layout_mode = 2
+text = "BACK"
+
+[node name="Options" type="VBoxContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.5
+offset_right = 25.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="Settings/Options"]
+layout_mode = 2
+
+[connection signal="button_down" from="Buttons/play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="Buttons/setting" to="." method="_on_setting_button_down"]
+[connection signal="button_down" from="Settings/MarginContainer/back_to_title_screen" to="." method="_on_back_to_title_screen_button_down"]
